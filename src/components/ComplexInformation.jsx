@@ -3,7 +3,6 @@ import { MapPin, MessageCircle, Phone, Sparkles } from 'lucide-react'
 export function ComplexInformation({ complex }) {
   return <section id="inicio" className="complex-information">
     <div className="complex-copy">
-      <p className="eyebrow"><Sparkles size={13} /> Billares, deporte y buena compañía</p>
       <h1>Tu lugar para<br /><em>compartir y competir.</em></h1>
       <p className="complex-name">{complex.name}</p>
       <p className="complex-description">{complex.description || 'Bienvenido. Consulta la disponibilidad de nuestras canchas y reserva tu próximo partido.'}</p>

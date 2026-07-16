@@ -1,19 +1,16 @@
-import { Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { CalendarDays, Home, MapPin } from 'lucide-react'
 
-export function ComplexHeader({ complex }) {
-  const [isOpen, setIsOpen] = useState(false)
-
+export function ComplexHeader({ complex, isSecondaryPage = false }) {
+  const basePath = isSecondaryPage ? '/' : ''
   return <header className="complex-header">
-    <a className="brand" href="#inicio" aria-label={`${complex?.name || 'Complejo deportivo'} inicio`}>
+    <a className="brand" href={`${basePath}#inicio`} aria-label={`${complex?.name || 'Complejo deportivo'} inicio`}>
       {complex?.logo && <span className="brand-mark"><img src={complex.logo} alt="" /></span>}
       <span>{complex?.name || 'Complejo deportivo'}</span>
     </a>
-    <nav className={isOpen ? 'complex-nav is-open' : 'complex-nav'}>
-      <a href="#inicio" onClick={() => setIsOpen(false)}>Inicio</a>
-      <a href="#canchas" onClick={() => setIsOpen(false)}>Canchas</a>
-      <a href="#ubicacion" onClick={() => setIsOpen(false)}>Ubicación</a>
+    <nav className="complex-nav" aria-label="Navegación principal">
+      <a href={`${basePath}#inicio`}><Home size={15} /> Inicio</a>
+      <a href={`${basePath}#canchas`}><CalendarDays size={15} /> Canchas</a>
+      <a href={`${basePath}#ubicacion`}><MapPin size={15} /> Ubicación</a>
     </nav>
-    <button className="mobile-menu-button" onClick={() => setIsOpen((open) => !open)} aria-label="Abrir menú" aria-expanded={isOpen}>{isOpen ? <X size={22} /> : <Menu size={22} />}</button>
   </header>
 }

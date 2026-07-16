@@ -1,0 +1,5 @@
+.complex-header { position: fixed; inset: 0 0 auto; }
+.complex-information { padding-top: 150px; }
+.availability-hero { padding-top: 144px; }
+
+@media (max-width: 760px) { .complex-information { padding-top: 118px; }.availability-hero { padding-top: 116px; } }
