@@ -21,6 +21,7 @@ function toCourt(row) {
 function toComplex(row) {
   return {
     ...fallbackComplex,
+    id: row.id,
     name: row.nombre,
     location: row.ciudad || fallbackComplex.location,
     logo: row.logo_url || fallbackComplex.logo,

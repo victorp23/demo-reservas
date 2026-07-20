@@ -1,0 +1,13 @@
+/* Paleta única del complejo: mismo tono base que el navbar. */
+:root, body, .availability-page, .court-catalog, .sponsor-section, .location-section, .simple-footer, .availability-content { background: #202020; }
+
+.court-catalog, .sponsor-section, .location-section { border-color: rgba(255,255,255,.1); }.court-catalog .section-heading h2, .court-catalog .section-heading > p:last-child, .sponsor-section, .sponsor-heading h2, .location-heading h2, .location-heading > p:last-of-type { color: #f5f5f5; }.eyebrow.dark, .court-type { color: #facc15; }.court-card, .sponsor-card, .availability-panel, .availability-court-picker button, .date-picker button, .time-slots button, .availability-message { color: #f5f5f5; border-color: rgba(255,255,255,.12); background: #202020; box-shadow: none; }.court-card h3, .court-price, .availability-panel-title h2, .time-slots-heading h3, .date-picker button strong { color: #fff; }.court-meta, .sponsor-info span, .availability-panel-title > p, .availability-legend, .date-picker button, .date-picker button small, .availability-message { color: rgba(255,255,255,.64); }.sponsor-info { border-top-color: rgba(255,255,255,.1); }.sponsor-info strong { color: #f5f5f5; }.court-image-placeholder { background: #202020; }.court-availability-button { color: #181818; }.location-map { border-color: rgba(255,255,255,.15); background: #202020; }.availability-page { color: #f5f5f5; background-image: none; }.availability-hero { background: #202020; }.availability-content { color: #f5f5f5; }.availability-court-picker > span { color: #facc15; }.availability-court-picker button.is-selected, .date-picker button.is-selected { color: #181818; border-color: #facc15; background: #facc15; box-shadow: none; }.availability-court-picker button.is-selected small, .date-picker button.is-selected small, .date-picker button.is-selected strong { color: #181818; }.availability-panel { background: #202020; }.time-slots-heading { border-top-color: rgba(255,255,255,.1); }.time-slots button:hover { border-color: #facc15; background: #292929; }.availability-message.is-error { color: #ffb4b4; }.simple-footer { border-top-color: rgba(255,255,255,.1); color: rgba(255,255,255,.55); }
+.sponsor-fade-left { background: linear-gradient(to right, #202020, transparent); }.sponsor-fade-right { background: linear-gradient(to left, #202020, transparent); }
+.sponsor-card, .sponsor-logo, .sponsor-info { background: #fff; }.sponsor-card { border-color: #e3e3e3; }.sponsor-info { border-top-color: #ededed; }.sponsor-info strong { color: #292929; }.sponsor-info span { color: #6f6f6f; }
+
+@media (max-width: 760px) {
+  .location-section {
+    padding-top: 34px;
+    padding-bottom: 52px;
+  }
+}

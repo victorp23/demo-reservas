@@ -2,4 +2,4 @@
 .complex-information { padding-top: 150px; }
 .availability-hero { padding-top: 144px; }
 
-@media (max-width: 760px) { .complex-information { padding-top: 118px; }.availability-hero { padding-top: 116px; } }
+@media (max-width: 760px) { .complex-information { min-height: 0; padding-top: 218px; padding-bottom: 46px; display: block; }.complex-information .hero-showcase { width: 132px; min-height: 132px; display: grid; position: absolute; top: 76px; right: 50%; transform: translateX(50%); }.complex-information .showcase-ring { width: 124px; }.complex-information .showcase-logo { width: 116px; height: 116px; }.complex-copy { width: 100%; }.complex-copy h1 { max-width: 330px; }.availability-hero { padding-top: 116px; } }

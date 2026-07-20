@@ -1,0 +1,2 @@
+/* Evita depender de DM Mono remoto: conserva la estética técnica con la fuente local del sistema. */
+.eyebrow, .complex-name, .court-type, .sponsor-info span, .simple-footer, .availability-complex small, .availability-court-picker > span, .availability-court-picker button small, .date-picker button small, .complex-information-grid small, .complex-page-name, .complex-page-courts article > span { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace !important; }

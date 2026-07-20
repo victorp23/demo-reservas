@@ -1,16 +1,26 @@
-import { CalendarDays, Home, MapPin } from 'lucide-react'
+import { CalendarDays, Home, MapPin, UserRound } from 'lucide-react'
 
-export function ComplexHeader({ complex, isSecondaryPage = false }) {
-  const basePath = isSecondaryPage ? '/' : ''
+export function ComplexHeader({ complex, session }) {
+  const currentPath = window.location.pathname
+  const isProfileRoute = currentPath === '/perfil' || currentPath === '/acceso'
+  const navigationItems = [
+    { label: 'Inicio', href: '/', icon: Home, active: currentPath === '/' },
+    { label: 'Horarios', href: '/horarios', icon: CalendarDays, active: currentPath === '/horarios' },
+    { label: 'Complejo', href: '/complejo', icon: MapPin, active: currentPath === '/complejo' },
+    { label: 'Mi perfil', href: session ? '/perfil' : '/acceso', icon: UserRound, active: isProfileRoute },
+  ]
+
   return <header className="complex-header">
-    <a className="brand" href={`${basePath}#inicio`} aria-label={`${complex?.name || 'Complejo deportivo'} inicio`}>
+    <a className="brand" href="/" aria-label={`${complex?.name || 'Complejo deportivo'} inicio`}>
       {complex?.logo && <span className="brand-mark"><img src={complex.logo} alt="" /></span>}
       <span>{complex?.name || 'Complejo deportivo'}</span>
     </a>
     <nav className="complex-nav" aria-label="Navegación principal">
-      <a href={`${basePath}#inicio`}><Home size={15} /> Inicio</a>
-      <a href={`${basePath}#canchas`}><CalendarDays size={15} /> Canchas</a>
-      <a href={`${basePath}#ubicacion`}><MapPin size={15} /> Ubicación</a>
+      {navigationItems.map(({ label, href, icon: Icon, active }) => (
+        <a key={label} href={href} className={active ? 'is-active' : undefined} aria-current={active ? 'page' : undefined}>
+          <Icon size={15} /> {label}
+        </a>
+      ))}
     </nav>
   </header>
 }
