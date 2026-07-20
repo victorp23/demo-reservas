@@ -11,6 +11,9 @@
 @media (max-width: 760px) { .admin-manager-grid, .admin-roster-section { grid-template-columns: 1fr; }.admin-roster-teams { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.1); }.admin-player-form { grid-template-columns: 1fr 56px; }.admin-player-form input:nth-of-type(3), .admin-player-form input:nth-of-type(4), .admin-player-form label { grid-column: span 2; }.admin-player-form button { grid-column: span 2; width: 100%; } }
 
 .admin-form-hint, .admin-fixture-help { margin: 0; color: rgba(255,255,255,.62); font-size: 11px; line-height: 1.55; }
+.admin-fixture-filter { width: min(100%, 330px); margin: 18px 0 0; display: grid; gap: 6px; }
+.admin-fixture-filter span { color: #facc15; font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.admin-fixture-filter select { width: 100%; padding: 10px 11px; color: #fff; outline: none; border: 1px solid rgba(250,204,21,.38); border-radius: 7px; background: #202020; font: inherit; font-size: 11px; }
 .admin-fixture-section { padding: 20px; border: 1px solid rgba(255,255,255,.11); border-radius: 12px; background: #292929; }
 .admin-fixture-section > header { display: flex; justify-content: space-between; align-items: end; gap: 14px; }
 .admin-fixture-section h3 { margin: 7px 0 0; color: #fff; font-size: 20px; }
@@ -27,3 +30,19 @@
 .admin-match button { padding: 8px 10px; display: inline-flex; justify-content: center; align-items: center; gap: 5px; color: #181818; border: 0; border-radius: 6px; background: #facc15; font-size: 10px; font-weight: 900; cursor: pointer; }
 .admin-match button:disabled { cursor: not-allowed; opacity: .55; }
 @media (max-width: 760px) { .admin-fixture-section { padding: 16px; }.admin-fixture-section > header { align-items: start; flex-direction: column; }.admin-fixture-actions { width: 100%; }.admin-fixture-actions button { flex: 1; }.admin-match-list { grid-template-columns: 1fr; }.admin-match-agenda { grid-template-columns: 1fr; }.admin-match-agenda button { width: 100%; } }
+
+.admin-grouped-matches { display: grid; gap: 22px; }.admin-match-phase { padding: 18px; border: 1px solid rgba(250,204,21,.27); border-radius: 11px; background: rgba(32,32,32,.72); }.admin-match-phase > header { display: flex; align-items: end; justify-content: space-between; gap: 14px; padding-bottom: 13px; border-bottom: 1px solid rgba(255,255,255,.1); }.admin-match-phase h4, .admin-next-phase h4 { margin: 6px 0 0; color: #fff; font-size: 20px; }.admin-match-phase > header > span { padding: 6px 9px; color: #facc15; border: 1px solid rgba(250,204,21,.35); border-radius: 999px; font-size: 10px; font-weight: 800; white-space: nowrap; }.admin-next-phase { margin-top: 20px; padding: 20px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border: 1px solid rgba(110,211,149,.55); border-radius: 11px; background: rgba(110,211,149,.08); }.admin-next-phase p:last-child { margin: 7px 0 0; color: rgba(255,255,255,.65); font-size: 11px; line-height: 1.5; }.admin-next-phase button { flex: 0 0 auto; }
+@media (max-width: 760px) { .admin-match-phase { padding: 14px; }.admin-match-phase > header, .admin-next-phase { align-items: start; flex-direction: column; }.admin-next-phase button { width: 100%; } }
+
+/* Nóminas: filtro de grupo y espacio de trabajo más cómodo. */
+.admin-roster-section { grid-template-columns: minmax(290px, .82fr) minmax(0, 1.55fr); }
+.admin-roster-filter { margin: 15px 0 5px; display: grid; gap: 6px; }
+.admin-roster-filter span { color: #facc15; font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.admin-roster-filter select { width: 100%; padding: 10px; color: #fff; outline: none; border: 1px solid rgba(250,204,21,.38); border-radius: 7px; background: #202020; font: inherit; font-size: 11px; }
+.admin-roster-teams button { padding: 12px; }
+.admin-roster-players { padding: 24px; }
+.admin-player-form { grid-template-columns: minmax(190px, 1.35fr) 64px minmax(130px, .9fr) minmax(150px, 1fr); gap: 9px; }
+.admin-match-list { grid-template-columns: repeat(auto-fit, minmax(335px, 1fr)); }
+.admin-match-teams { grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr) 48px; gap: 8px; }
+.admin-match-teams input { min-height: 37px; padding: 7px 5px; font-size: 13px; font-weight: 800; text-align: center; }
+@media (max-width: 760px) { .admin-roster-section { grid-template-columns: 1fr; }.admin-player-form { grid-template-columns: 1fr 56px; } }

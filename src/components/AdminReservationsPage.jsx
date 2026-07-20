@@ -25,15 +25,15 @@ export function AdminReservationsPage({ complex }) {
   const [selectedTournament, setSelectedTournament] = useState(null)
   const [tournamentForm, setTournamentForm] = useState({ nombre: '', descripcion: '', categoria: '', fechaInicio: '', fechaFin: '', formato: 'GRUPOS_Y_ELIMINACION', maxEquipos: '8' })
 
-  const loadAdminData = useCallback(async () => {
+  const loadAdminData = useCallback(async (showLoading = true) => {
     if (!supabase || !complex?.id) return
-    setIsLoading(true)
+    if (showLoading) setIsLoading(true)
     setAuthError('')
     const [reservationsResponse, tournamentsResponse] = await Promise.all([
       supabase.rpc('demo_admin_reservas', { p_complejo_id: complex.id }),
       supabase.rpc('demo_admin_torneos', { p_complejo_id: complex.id }),
     ])
-    setIsLoading(false)
+    if (showLoading) setIsLoading(false)
 
     if (reservationsResponse.error || tournamentsResponse.error) {
       setIsAuthorized(false)

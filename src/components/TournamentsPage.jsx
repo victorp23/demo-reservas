@@ -28,12 +28,20 @@ function groupStandings(rows) {
 export function TournamentsPage({ complex }) {
   const data = useDemoTournaments(complex?.id)
   const [selectedId, setSelectedId] = useState(null)
+  const [selectedGroupId, setSelectedGroupId] = useState(null)
   const selectedTournament = useMemo(() => data.tournaments.find((tournament) => tournament.id === selectedId) || data.tournaments[0], [data.tournaments, selectedId])
   const selectedGroups = data.groups.filter((group) => group.torneo_id === selectedTournament?.id)
   const selectedStandings = data.standings.filter((row) => row.torneo_id === selectedTournament?.id)
   const selectedMatches = data.matches.filter((match) => match.torneo_id === selectedTournament?.id)
+  const activeGroupId = selectedGroups.some((group) => group.id === selectedGroupId) ? selectedGroupId : selectedGroups[0]?.id
+  const activeGroup = selectedGroups.find((group) => group.id === activeGroupId)
+  const groupMatches = selectedMatches.filter((match) => match.grupo_id === activeGroupId)
   const directMatches = selectedMatches.filter((match) => !match.grupo_id)
   const teamsById = Object.fromEntries(data.teams.map((team) => [team.id, team]))
+  const finalMatch = directMatches.find((match) => match.fase === 'FINAL' && match.estado === 'FINALIZADO')
+  const championId = finalMatch?.ganador_equipo_id
+    || (finalMatch?.goles_local > finalMatch?.goles_visitante ? finalMatch.equipo_local_id : finalMatch?.goles_visitante > finalMatch?.goles_local ? finalMatch.equipo_visitante_id : null)
+  const champion = championId ? teamsById[championId] : null
 
   return <main className="tournaments-page">
     <section className="tournaments-hero">
@@ -47,7 +55,7 @@ export function TournamentsPage({ complex }) {
 
       {!!selectedTournament && <>
         <div className="tournament-picker" aria-label="Seleccionar torneo">
-          {data.tournaments.map((tournament) => <button key={tournament.id} onClick={() => setSelectedId(tournament.id)} className={tournament.id === selectedTournament.id ? 'is-selected' : ''}>
+          {data.tournaments.map((tournament) => <button key={tournament.id} onClick={() => { setSelectedId(tournament.id); setSelectedGroupId(null) }} className={tournament.id === selectedTournament.id ? 'is-selected' : ''}>
             <span>{statusLabel[tournament.estado] || tournament.estado}</span><strong>{tournament.nombre}</strong><ChevronRight size={16} />
           </button>)}
         </div>
@@ -57,9 +65,11 @@ export function TournamentsPage({ complex }) {
           <div className="tournament-meta"><span><CalendarDays size={15} />{dateRange(selectedTournament)}</span><span><UsersRound size={15} />{data.teams.filter((team) => team.torneo_id === selectedTournament.id).length} equipos</span><strong className={`tournament-status is-${selectedTournament.estado?.toLowerCase()}`}>{statusLabel[selectedTournament.estado] || selectedTournament.estado}</strong></div>
         </section>
 
-        {selectedGroups.length > 0 && <section className="standings-section"><div className="tournament-section-heading"><p className="eyebrow dark"><UsersRound size={13} /> FASE DE GRUPOS</p><h2>Tabla de posiciones</h2></div><div className="standings-grid">{selectedGroups.map((group) => <article className="standings-card" key={group.id}><h3>{group.nombre}</h3><div className="standings-head"><span>#</span><span>Equipo</span><span>PJ</span><span>DG</span><span>PTS</span></div>{groupStandings(selectedStandings.filter((row) => row.grupo_id === group.id)).map((row, index) => <div className="standing-row" key={row.equipo_id}><span>{index + 1}</span><strong>{row.equipo_nombre}</strong><span>{row.partidos_jugados}</span><span>{row.goles_favor - row.goles_contra}</span><b>{row.puntos}</b></div>)}</article>)}</div></section>}
+        {champion && <section className="tournament-champion" aria-label="Campeón del torneo"><div className="tournament-champion-icon"><Trophy size={28} /></div><div><p className="eyebrow dark">CAMPEÓN DEL TORNEO</p><h2>¡Felicitaciones, {champion.nombre}!</h2><p>Se consagró campeón de <strong>{selectedTournament.nombre}</strong> tras ganar la final.</p></div><span>CAMPEÓN</span></section>}
 
-        {selectedMatches.filter((match) => match.grupo_id).length > 0 && <section className="matches-section"><div className="tournament-section-heading"><p className="eyebrow dark"><CircleDot size={13} /> PARTIDOS DE GRUPOS</p><h2>Calendario y resultados</h2></div><div className="match-grid">{selectedMatches.filter((match) => match.grupo_id).map((match) => <MatchCard key={match.id} match={match} teamsById={teamsById} />)}</div></section>}
+        {selectedGroups.length > 0 && <section className="standings-section"><div className="tournament-section-heading"><p className="eyebrow dark"><UsersRound size={13} /> FASE DE GRUPOS</p><h2>Posiciones y calendario</h2><p className="tournament-section-copy">Selecciona un grupo para revisar sus equipos, tabla y próximos partidos.</p></div><div className="group-selector" role="tablist" aria-label="Seleccionar grupo">{selectedGroups.map((group) => <button key={group.id} role="tab" aria-selected={group.id === activeGroupId} onClick={() => setSelectedGroupId(group.id)} className={group.id === activeGroupId ? 'is-active' : ''}><span>{group.nombre}</span><small>{selectedStandings.filter((row) => row.grupo_id === group.id).length} equipos</small></button>)}</div>{activeGroup && <div className="standings-grid"><article className="standings-card" key={activeGroup.id}><h3>{activeGroup.nombre}</h3><div className="standings-head"><span>#</span><span>Equipo</span><span>PJ</span><span>DG</span><span>PTS</span></div>{groupStandings(selectedStandings.filter((row) => row.grupo_id === activeGroup.id)).map((row, index) => <div className="standing-row" key={row.equipo_id}><span>{index + 1}</span><strong>{row.equipo_nombre}</strong><span>{row.partidos_jugados}</span><span>{row.goles_favor - row.goles_contra}</span><b>{row.puntos}</b></div>)}</article></div>}</section>}
+
+        {groupMatches.length > 0 && <section className="matches-section"><div className="tournament-section-heading"><p className="eyebrow dark"><CircleDot size={13} /> {activeGroup?.nombre?.toUpperCase() || 'PARTIDOS DE GRUPOS'}</p><h2>Calendario y resultados</h2></div><div className="match-grid">{groupMatches.map((match) => <MatchCard key={match.id} match={match} teamsById={teamsById} />)}</div></section>}
 
         {directMatches.length > 0 && <section className="bracket-section"><div className="tournament-section-heading"><p className="eyebrow dark"><Trophy size={13} /> FASE ELIMINATORIA</p><h2>Llaves del torneo</h2></div><div className="bracket-grid">{directMatches.map((match) => <MatchCard key={match.id} match={match} teamsById={teamsById} bracket />)}</div></section>}
       </>}
