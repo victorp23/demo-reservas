@@ -12,6 +12,7 @@ import './reservation.css'
 import './admin.css'
 import './profile.css'
 import './bottom-profile.css'
+import './tournaments.css'
 import { AdminReservationsPage } from './components/AdminReservationsPage'
 import { AccessPage } from './components/AccessPage'
 import { AvailabilityPage } from './components/AvailabilityPage'
@@ -23,6 +24,7 @@ import { CourtCatalog } from './components/CourtCatalog'
 import { LocationSection } from './components/LocationSection'
 import { ProfilePage } from './components/ProfilePage'
 import { SponsorCarousel } from './components/SponsorCarousel'
+import { TournamentsPage } from './components/TournamentsPage'
 import { useDemoCatalog } from './hooks/useDemoCatalog'
 import { useAuthSession } from './hooks/useAuthSession'
 
@@ -30,6 +32,7 @@ function App() {
   const catalog = useDemoCatalog()
   const session = useAuthSession()
   const isAvailabilityPage = window.location.pathname === '/horarios'
+  const isTournamentsPage = window.location.pathname === '/torneos'
   const isComplexPage = window.location.pathname === '/complejo'
   const isAdminPage = window.location.pathname === '/admin'
   const isAccessPage = window.location.pathname === '/acceso'
@@ -60,11 +63,15 @@ function App() {
     </>
   }
 
-  if (isAvailabilityPage || isComplexPage) {
+  if (isAvailabilityPage || isComplexPage || isTournamentsPage) {
     return <>
       <ComplexHeader complex={catalog.complex} isSecondaryPage session={session} />
       <CatalogStatus isLoading={catalog.isLoading} error={catalog.error} />
-      {catalog.complex && (isAvailabilityPage ? <AvailabilityPage complex={catalog.complex} courts={catalog.courts} session={session} /> : <ComplexPage complex={catalog.complex} courts={catalog.courts} />)}
+      {catalog.complex && (isAvailabilityPage
+        ? <AvailabilityPage complex={catalog.complex} courts={catalog.courts} session={session} />
+        : isTournamentsPage
+          ? <TournamentsPage complex={catalog.complex} />
+          : <ComplexPage complex={catalog.complex} courts={catalog.courts} />)}
       <BottomNavigation isSecondaryPage session={session} />
     </>
   }

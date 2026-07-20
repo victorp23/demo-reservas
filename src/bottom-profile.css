@@ -1,4 +1,4 @@
 @media (max-width: 760px) {
-  .bottom-navigation > div { max-width: 360px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .bottom-navigation a span { font-size: 8px; }
+  .bottom-navigation > div { max-width: 440px; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .bottom-navigation a span { font-size: 7px; }
 }

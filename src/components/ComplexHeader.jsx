@@ -1,4 +1,4 @@
-import { CalendarDays, Home, MapPin, UserRound } from 'lucide-react'
+import { CalendarDays, Home, MapPin, Trophy, UserRound } from 'lucide-react'
 
 export function ComplexHeader({ complex, session }) {
   const currentPath = window.location.pathname
@@ -6,6 +6,7 @@ export function ComplexHeader({ complex, session }) {
   const navigationItems = [
     { label: 'Inicio', href: '/', icon: Home, active: currentPath === '/' },
     { label: 'Horarios', href: '/horarios', icon: CalendarDays, active: currentPath === '/horarios' },
+    { label: 'Torneos', href: '/torneos', icon: Trophy, active: currentPath === '/torneos' },
     { label: 'Complejo', href: '/complejo', icon: MapPin, active: currentPath === '/complejo' },
     { label: 'Mi perfil', href: session ? '/perfil' : '/acceso', icon: UserRound, active: isProfileRoute },
   ]

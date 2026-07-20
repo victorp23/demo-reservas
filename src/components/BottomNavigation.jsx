@@ -1,8 +1,9 @@
-import { CalendarDays, Home, MapPin, UserRound } from 'lucide-react'
+import { CalendarDays, Home, MapPin, Trophy, UserRound } from 'lucide-react'
 
 const navigationItems = [
   { label: 'Inicio', href: '/', icon: Home },
   { label: 'Horarios', href: '/horarios', icon: CalendarDays },
+  { label: 'Torneos', href: '/torneos', icon: Trophy },
   { label: 'Complejo', href: '/complejo', icon: MapPin },
 ]
 
@@ -15,6 +16,7 @@ export function BottomNavigation({ session }) {
       const isActive =
         (currentPath === '/' && label === 'Inicio') ||
         (currentPath === '/horarios' && label === 'Horarios') ||
+        (currentPath === '/torneos' && label === 'Torneos') ||
         (currentPath === '/complejo' && label === 'Complejo') ||
         ((currentPath === '/perfil' || currentPath === '/acceso') && label === 'Mi perfil')
 
