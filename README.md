@@ -1,16 +1,16 @@
-# Auxilio Tech Demo
+# Invitaciones digitales
 
-Demo independiente para presentar una plataforma digital de reservas y gestión de canchas sintéticas.
+Plataforma para crear y compartir invitaciones digitales animadas, con fotografías, video, audio, ubicación y confirmación de asistencia.
 
-## Incluye
+## Backend actual
 
-- Landing comercial de Auxilio Tech.
-- Reserva simulada para canchas de fútbol.
-- Vista de agenda y panel administrativo.
-- Simulación de atención mediante bot de WhatsApp.
-- Módulos visuales para torneos, clientes y operación.
+- La migración `supabase/migrations/20260929_invites_backend.sql` elimina únicamente los objetos anteriores `demo_*`.
+- Las nuevas tablas usan el prefijo `invites_`.
+- Se soportan eventos, secciones de contenido, imágenes, video, audio, invitados y confirmaciones.
+- La migración `20260929_invites_event_content.sql` agrega `invites_event_content` para guardar bloques de texto y medios pequeños dentro de la base de datos como base64, con un límite de 15 MB por contenido.
+- El bucket público `invites-media` permite almacenar los medios de cada invitación con carpetas privadas por usuario para subir, modificar y eliminar archivos.
 
-No utiliza Supabase, WhatsApp Cloud API ni pagos reales. Todos los datos son de demostración.
+La invitación pública se consulta mediante `invites_public_event(slug)` y la confirmación mediante `invites_submit_rsvp(...)`.
 
 ## Ejecutar localmente
 

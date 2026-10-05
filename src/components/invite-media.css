@@ -1,0 +1,1 @@
+.invite-video-file{width:min(920px,100%);max-height:620px;margin:auto;display:block;border-radius:14px;box-shadow:0 20px 50px rgba(0,0,0,.35);background:#161011}.invite-audio{position:fixed;z-index:10;right:22px;bottom:22px;width:min(300px,calc(100% - 44px));accent-color:#c88e83}@media(max-width:700px){.invite-audio{right:14px;bottom:14px;width:calc(100% - 28px)}}

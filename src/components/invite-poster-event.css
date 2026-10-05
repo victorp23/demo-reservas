@@ -1,0 +1,106 @@
+html:has(.invitation-page), body:has(.invitation-page), #root:has(.invitation-page) { height: 100%; margin: 0; overflow: hidden; background: #151515; }
+.invitation-page { width: 100%; height: 100dvh; display: grid; place-items: center; overflow: hidden; background: #151515; font-family: Arial, Helvetica, sans-serif; }
+.invitation-card { position: relative; width: min(100vw, 480px); height: min(100dvh, 900px); min-height: 0; overflow: hidden; isolation: isolate; color: #111; background: #247fbf url('/bugsbunny-sede.png') center / cover no-repeat; box-shadow: 0 0 0 3px #1d1d1d, 0 9px 22px rgb(0 0 0 / 45%); }
+.invitation-card::after { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(180deg, rgb(14 100 159 / 5%) 0 42%, rgb(8 11 13 / 54%) 67%, rgb(8 10 11 / 78%) 100%); }
+.invitation-sky { position: absolute; inset: 0 0 auto; height: 38%; background: radial-gradient(circle at 11% 18%, rgb(255 255 255 / 28%) 0 1px, transparent 2px) 0 0 / 17px 17px; opacity: .25; pointer-events: none; }
+.invitation-title { position: absolute; z-index: 4; top: 0; right: 0; left: 0; height: 25%; overflow: visible; }
+.invitation-sign { width: 100%; height: 100%; display: block; object-fit: contain; object-position: center top; filter: drop-shadow(0 4px 0 rgb(0 0 0 / 70%)); animation: invitation-board-bob 5s ease-in-out infinite; }
+.invitation-countdown { position: absolute; z-index: 5; top: 21.5%; right: 8%; left: 8%; display: grid; justify-items: center; gap: 3px; padding: 7px 9px 6px; border: 3px solid #111; border-radius: 13px; background: rgb(255 210 26 / 94%); box-shadow: 4px 4px 0 #ed1c24; text-align: center; }
+.invitation-countdown p { margin: 0; color: #ed1c24; font-size: 9px; font-weight: 900; letter-spacing: .18em; }
+.invitation-countdown-units { width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.invitation-countdown-units span { display: grid; gap: 1px; min-width: 0; }
+.invitation-countdown-units b { font-family: Impact, 'Arial Black', sans-serif; font-size: clamp(18px, 4.8vw, 28px); line-height: .9; }
+.invitation-countdown-units small { font-size: 7px; font-weight: 900; }
+.invitation-countdown time { font-size: clamp(8px, 1.7vw, 10px); font-weight: 900; }
+.invitation-countdown-finished { color: #ed1c24; font-family: Impact, 'Arial Black', sans-serif; font-size: 25px; }
+.invitation-scene { position: absolute; z-index: 2; inset: 28% 0 12%; }
+.invitation-characters { position: absolute; right: 3%; bottom: 5%; width: 94%; height: auto; filter: drop-shadow(3px 5px 0 rgb(0 0 0 / 38%)); animation: invitation-bob 4.5s ease-in-out infinite; }
+.invitation-cars { position: absolute; z-index: 2; right: -5%; bottom: 13%; width: 110%; height: auto; filter: drop-shadow(3px 5px 0 rgb(0 0 0 / 38%)); animation: invitation-race 1.8s ease-in-out infinite; }
+.invitation-pot { position: absolute; z-index: 3; right: 12%; bottom: -3%; width: 76%; height: auto; filter: drop-shadow(2px 6px 0 rgb(0 0 0 / 48%)); animation: invitation-pot-in .65s .25s both cubic-bezier(.2, 1.2, .4, 1); }
+.invitation-info-strip { position: absolute; z-index: 6; top: 24%; right: 4%; left: 4%; height: 10%; }
+.invitation-info-strip { display: flex; align-items: center; justify-content: space-around; gap: 8px; }
+.invitation-info { display: flex; align-items: center; justify-content: center; gap: 5px; min-width: 0; color: #fff; line-height: .92; text-align: left; text-shadow: 2px 2px 0 #111, -1px -1px 0 #111; }
+.invitation-info svg { flex: none; width: clamp(18px, 3.8dvh, 30px); height: clamp(18px, 3.8dvh, 30px); color: #ffd21a; filter: drop-shadow(2px 2px 0 #111); }
+.invitation-info span, .invitation-info small { display: block; font-size: clamp(6px, 1.05dvh, 9px); font-weight: 900; }
+.invitation-info strong { display: block; color: #ffd21a; font-family: Impact, 'Arial Black', sans-serif; font-size: clamp(15px, 3.2dvh, 29px); }
+.invitation-info-date strong { font-size: clamp(25px, 5dvh, 43px); }
+.invitation-info-time strong { font-size: clamp(13px, 2.6dvh, 24px); }
+.invitation-info-place strong { font-size: clamp(11px, 2.1dvh, 19px); }
+.invitation-details { position: absolute; z-index: 4; right: 4%; bottom: 12.5%; left: 4%; display: grid; gap: 7px; }
+.invitation-detail { display: flex; align-items: center; gap: 12px; min-height: clamp(47px, 7.2dvh, 65px); padding: 7px 16px; border: 4px solid #111; border-radius: 16px; box-shadow: 4px 4px 0 #111; }
+.invitation-detail span { display: block; font-size: 9px; font-weight: 900; letter-spacing: .16em; }
+.invitation-detail strong { display: block; margin-top: 2px; font-size: clamp(15px, 2dvh, 19px); font-weight: 900; }
+.invitation-detail-date { background: #ffd21a; }
+.invitation-detail-time { background: #fff; }
+.invitation-detail-place { color: #fff; background: #ed1c24; }
+.invitation-actions { position: absolute; z-index: 7; right: 4%; bottom: 2%; left: 4%; display: flex; gap: 7px; }
+.invitation-actions button { min-height: clamp(32px, 5dvh, 44px); display: inline-flex; flex: 1; align-items: center; justify-content: center; gap: 5px; padding: 5px 4px; border: 3px solid #111; border-radius: 11px; box-shadow: 3px 3px 0 #111; color: #111; font: 900 clamp(8px, 1.3dvh, 11px) Arial, sans-serif; white-space: nowrap; cursor: pointer; transition: transform .15s ease, filter .15s ease; }
+.invitation-actions button:first-child { background: #ffd21a; }
+.invitation-actions button:nth-child(2) { color: #fff; background: #ed1c24; }
+.invitation-actions button:last-child { background: #fff; }
+.invitation-actions button:hover { transform: translateY(-3px) rotate(-1deg); filter: brightness(1.08); }
+.invitation-actions button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 #111; }
+.invitation-modal-backdrop { position: fixed; z-index: 30; inset: 0; display: grid; place-items: center; padding: 18px; background: rgb(0 0 0 / 78%); backdrop-filter: blur(6px); }
+.invitation-modal { position: relative; width: min(560px, 100%); max-height: 90vh; overflow: auto; padding: 29px; border: 4px solid #111; border-radius: 18px; background: #ffd21a; color: #111; box-shadow: 8px 8px 0 #ed1c24; }
+.invitation-modal h2 { margin: 0 0 16px; font-size: 28px; }
+.invitation-modal-close { position: absolute; top: 9px; right: 9px; width: 31px; height: 31px; display: grid; place-items: center; border: 2px solid #111; border-radius: 50%; background: #ed1c24; color: #fff; cursor: pointer; }
+.invitation-place { display: flex; align-items: center; gap: 7px; font-weight: 900; }
+.invitation-modal iframe { width: 100%; height: 280px; margin-top: 12px; border: 3px solid #111; border-radius: 10px; }
+.invitation-modal-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; color: #111; font-weight: 900; }
+.invitation-more { display: grid; gap: 13px; }
+.invitation-more-hero { position: relative; min-height: 76px; display: flex; align-items: center; gap: 10px; overflow: hidden; padding: 8px 12px 8px 66px; border: 3px solid #111; border-radius: 13px; background: linear-gradient(135deg, #ed1c24 0 58%, #b80f18 58%); color: #fff; box-shadow: 4px 4px 0 #111; }
+.invitation-more-hero::after { content: '✦  ✦  ✦'; position: absolute; right: 10px; bottom: 5px; color: #ffd21a; font-size: 15px; letter-spacing: 5px; }
+.invitation-more-hero img { position: absolute; bottom: -11px; left: -8px; width: 82px; height: 79px; object-fit: contain; filter: drop-shadow(2px 3px 0 #111); transform: rotate(-6deg); }
+.invitation-more-hero div { display: grid; gap: 4px; }
+.invitation-more-hero span { color: #ffd21a; font-size: 9px; font-weight: 900; letter-spacing: .1em; }
+.invitation-more-hero strong { font-family: Impact, 'Arial Black', sans-serif; font-size: clamp(18px, 4vw, 25px); line-height: .95; text-shadow: 2px 2px 0 #111; }
+.invitation-more-lead { margin: 0; padding: 12px 13px; border: 3px solid #111; border-radius: 12px; background: #fff; font-size: 14px; font-weight: 700; line-height: 1.35; }
+.invitation-more-heading { margin: 0; padding: 9px 12px; border: 3px solid #111; border-radius: 10px; background: #ed1c24; color: #fff; font-size: 17px; box-shadow: 3px 3px 0 #111; }
+.invitation-more-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; margin: 0; padding: 0; list-style: none; }
+.invitation-more-list li { min-height: 38px; display: flex; align-items: center; padding: 7px 8px; border: 2px solid #111; border-radius: 8px; background: #fff; box-shadow: 2px 2px 0 rgb(0 0 0 / 35%); font-size: 12px; font-weight: 800; line-height: 1.15; }
+.invitation-more-list li:nth-child(odd) { background: #fff4bd; }
+.invitation-more-list li:last-child { grid-column: 1 / -1; background: #2b9dd1; color: #fff; }
+.invitation-more-meta { display: grid; gap: 7px; }
+.invitation-more-meta p { margin: 0; padding: 9px 11px; border: 3px solid #111; border-radius: 9px; background: #111; color: #ffd21a; font-size: 13px; }
+.invitation-more-closing { margin: 0; font-size: 13px; font-weight: 700; line-height: 1.38; }
+.invitation-more-signoff { margin: 0; padding: 11px; border: 3px solid #111; border-radius: 10px; background: #ed1c24; color: #fff; text-align: center; font-size: 13px; font-weight: 900; line-height: 1.3; }
+.birthday-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.birthday-card { min-width: 0; overflow: hidden; border: 3px solid #111; border-radius: 14px; background: #fff; box-shadow: 4px 4px 0 #ed1c24; }
+.birthday-photo-slot { aspect-ratio: 1 / .78; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border-bottom: 3px dashed #111; background: linear-gradient(135deg, #2b9dd1, #ffd21a); color: #111; font-size: 27px; }
+.birthday-photo { width: 100%; aspect-ratio: 1 / .78; display: block; border-bottom: 3px dashed #111; object-fit: cover; object-position: center 20%; }
+.birthday-photo-nico { object-position: center 18%; }
+.birthday-photo-lesly { object-position: center 18%; }
+.birthday-photo-elbirita { object-position: center 16%; }
+.birthday-photo-slot span { font: 900 9px Arial, sans-serif; text-transform: uppercase; }
+.birthday-copy { padding: 9px 8px 10px; text-align: center; }
+.birthday-copy h3 { margin: 0; font-size: clamp(15px, 2.8vw, 20px); }
+.birthday-copy p { margin: 4px 0 0; color: #ed1c24; font-size: 11px; font-weight: 900; }
+.invitation-rsvp { display: grid; gap: 13px; }
+.invitation-rsvp label { display: grid; gap: 6px; font-size: 11px; font-weight: 900; text-transform: uppercase; }
+.invitation-rsvp input, .invitation-rsvp select, .invitation-rsvp textarea { box-sizing: border-box; width: 100%; padding: 11px; border: 2px solid #111; border-radius: 8px; background: #fff; color: #111; font: 15px Arial; }
+.invitation-rsvp button { display: flex; align-items: center; justify-content: center; gap: 7px; padding: 12px; border: 3px solid #111; border-radius: 9px; background: #ed1c24; color: #fff; font-weight: 900; }
+.invitation-success { padding: 22px; text-align: center; }
+.invitation-success svg { color: #168f46; }
+.invitation-media { width: 100%; margin-top: 14px; }
+.invitation-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.invitation-gallery-image { width: 100%; height: 130px; margin: 0; object-fit: cover; border: 3px solid #111; border-radius: 9px; box-shadow: 3px 3px 0 #ed1c24; }
+.invitation-modal-characters { width: 100%; max-height: 230px; object-fit: contain; border-radius: 10px; background: #20aee8; }
+.audio-permission-backdrop { position: fixed; z-index: 40; inset: 0; display: grid; place-items: center; padding: 20px; background: rgb(0 0 0 / 68%); backdrop-filter: blur(3px); }
+.audio-permission { position: relative; width: min(350px, calc(100% - 28px)); padding: 38px 20px 20px; border: 4px solid #111; border-radius: 18px; background: linear-gradient(150deg, #9d4c25, #673119); color: #fff; text-align: center; box-shadow: 8px 8px 0 #ed1c24; animation: audio-permission-in .3s ease-out both; }
+.audio-permission-crab { position: absolute; top: -72px; left: 50%; width: 125px; height: 92px; object-fit: contain; transform: translateX(-50%); filter: drop-shadow(3px 4px 0 #111); animation: invitation-crab-wave 1.7s ease-in-out infinite; }
+.audio-permission-note { position: absolute; top: 11px; right: 13px; color: #ffd21a; font-size: 24px; font-weight: 900; transform: rotate(12deg); }
+.audio-permission-kicker { margin: 0 0 7px; color: #ffd21a; font-size: 10px; font-weight: 900; letter-spacing: .14em; }
+.audio-permission h2 { margin: 0; font-family: Impact, 'Arial Black', sans-serif; font-size: 27px; letter-spacing: .01em; text-shadow: 2px 2px 0 #111; }
+.audio-permission-copy { margin: 9px 0 19px; color: #fff; font-size: 14px; line-height: 1.35; }
+.audio-permission-actions { display: flex; gap: 9px; }
+.audio-permission-actions button { flex: 1; padding: 12px 8px; border: 3px solid #111; border-radius: 10px; color: #111; font-weight: 900; cursor: pointer; }
+.audio-permission-actions button:first-child { background: #ffd21a; }
+.audio-permission-actions button:last-child { background: #fff; }
+@keyframes invitation-bob { 50% { transform: translateY(-5px); } }
+@keyframes invitation-race { 0%, 100% { transform: translateX(-1%) rotate(-.4deg); } 50% { transform: translateX(1.2%) rotate(.5deg) translateY(-4px); } }
+@keyframes invitation-crab-wave { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-7px) rotate(3deg); } }
+@keyframes invitation-pot-in { from { opacity: 0; transform: scale(.72); } to { opacity: 1; transform: scale(1); } }
+@keyframes invitation-board-bob { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-2px) rotate(.25deg); } }
+@keyframes audio-permission-in { from { opacity: 0; transform: scale(.88) translateY(12px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+@media (max-height: 680px) { .invitation-title { height: 22%; } .invitation-scene { top: 25%; bottom: 12%; } .invitation-details { bottom: 12%; gap: 4px; } .invitation-detail { min-height: 39px; padding-block: 4px; border-width: 3px; border-radius: 12px; } .invitation-detail strong { font-size: 13px; } .invitation-actions button { min-height: 35px; } }
+@media (max-width: 360px) { .invitation-detail { gap: 8px; padding-inline: 10px; } .invitation-detail strong { font-size: 13px; } .invitation-detail span { font-size: 7px; } .invitation-actions { gap: 5px; } .invitation-actions button { border-width: 2px; box-shadow: 2px 2px 0 #111; font-size: 8px; } }
